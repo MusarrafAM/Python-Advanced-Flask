@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Restaurants{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 ">
+
+            <h1>All Cafes</h1>
+
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    {% for cafe in cafes[0] %}
+                    <th scope="col">{{ cafe }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for cafe in cafes[1::] %}
+                <tr>
+                    {% for each_item in cafe %}
+                        {% if "http" in each_item %}
+                            <td><a href="{{ each_item }}">Link</a></td>
+                    {% else %}
+                        <td>{{ each_item }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+            <p><a href="{{ url_for('home') }}">Return to index page</a></p>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
